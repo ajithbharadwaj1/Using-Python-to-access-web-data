@@ -1,0 +1,25 @@
+# usingpythontoaccesswebdata
+
+import urllib.request,urllib.parse,urllib.error
+from bs4 import BeautifulSoup
+import ssl
+
+ctx=ssl.create_default_context()
+ctx.check_hostname=False
+ctx.verify_mode=ssl.CERT_NONE
+l=list()
+url=input('Enter-')
+count=input("Enter Counts ")
+position=int(input("Enter Position "))-1
+html=urllib.request.urlopen(url,context=ctx).read()
+soup=BeautifulSoup(html,'html.parser') 
+#Retrive all anchor tags
+tags=soup('a')
+for i in range(int(count)):
+	link=tags[position].get('href',None)
+	print(tags[position].contents[0])
+	html=urllib.request.urlopen(link,context=ctx).read()
+	soup=BeautifulSoup(html,'html.parser') 
+	tags=soup('a')
+
+
