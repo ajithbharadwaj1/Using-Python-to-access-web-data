@@ -1,0 +1,11 @@
+import re
+sum=0
+file=input("Input a file")
+handle=open(file)
+for lines in handle:
+	if re.search('[0-9]+',lines):
+		v=re.findall('[0-9]+',lines)
+	    v=int(v)
+	    sum=sum+v
+print("Total Sum".sum)
+	
